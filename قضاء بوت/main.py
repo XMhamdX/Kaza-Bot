@@ -2,9 +2,7 @@ import telebot
 from telebot import types
 import json
 import os
-from server import server
 import threading
-import time
 
 
 
@@ -38,8 +36,8 @@ def start_conversation_cleanup(chat_id):
     threading.Timer(10, cleanup_conversation, args=[chat_id]).start()
 
 def cleanup_conversation(chat_id):
-    bot.delete_message(chat_id, 0)
-    start_conversation_cleanup(chat_id)
+    # هنا يمكنك إضافة الكود الخاص بما تريد فعله عند تنظيف المحادثة
+    pass
 
 @bot.message_handler(func=lambda message: message.text == 'قضاء الصلاة')
 def choose_prayer_status(message):
@@ -181,9 +179,4 @@ def process_group_prayer_count(message, prayer):
     except ValueError:
         bot.send_message(chat_id, 'يجب إدخال رقم صحيح.')
 
-server()
 bot.polling()
-
-
-
-
